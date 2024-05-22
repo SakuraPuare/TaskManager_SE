@@ -29,4 +29,16 @@ public class UserController {
             }
         }
     }
+
+    @PostMapping("/register")
+    @Operation(summary = "用户注册")
+    public Result<String> register(@RequestBody UserDTO userDTO){
+        for (UserDTO user : users) {
+            if (user.getUsername().equals(userDTO.getUsername()) && user.getPassword().equals(userDTO.getPassword())) {
+                return Result.error("该账号已被注册");
+            }
+        }
+        users.add(userDTO);
+        return Result.success("注册成功");
+    }
 }
