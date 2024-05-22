@@ -28,6 +28,7 @@ public class UserController {
                 return Result.success("登录成功");
             }
         }
+        return Result.error("账户或密码错误");
     }
 
     @PostMapping("/register")
